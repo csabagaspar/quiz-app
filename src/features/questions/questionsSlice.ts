@@ -1,13 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {RootState} from '../../app/store'
 
-interface Question {
-  id: number
+export interface Question {
+  id: string
   question: string
   answers: string[]
   correct: string
 }
-interface QuestionsState {
+export interface QuestionsState {
   value: Question[]
 }
 
@@ -22,7 +22,7 @@ export const questionsSlice = createSlice({
     addQuestion: (state, action: PayloadAction<Question>) => {
       return {value: [...state.value, action.payload]}
     },
-    removeQuestion: (state, action: PayloadAction<number>) => {
+    removeQuestion: (state, action: PayloadAction<string>) => {
       return {
         value: state.value.filter(
           (question: Question) => action.payload !== question.id,
@@ -35,11 +35,7 @@ export const questionsSlice = createSlice({
   },
 })
 
-export const {
-  addQuestion,
-  removeQuestion,
-  loadQuestions,
-} = questionsSlice.actions
+export const {addQuestion, removeQuestion} = questionsSlice.actions
 
 export const queryQuestions = (state: RootState) => state.questions.value
 
