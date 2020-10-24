@@ -58,6 +58,7 @@ export const Answers = ({
               <Button
                 variant="contained"
                 disabled
+                fullWidth
                 style={{backgroundColor: `${backgroundColor}`}}
               >
                 {answer}
@@ -66,6 +67,7 @@ export const Answers = ({
               <Button
                 variant="contained"
                 data-answer={answer}
+                fullWidth
                 onClick={handleAnswerClick}
               >
                 {answer}

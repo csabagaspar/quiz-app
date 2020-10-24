@@ -2,31 +2,51 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Radio from '@material-ui/core/Radio'
+import FormControl from '@material-ui/core/FormControl'
 
-export const Input = ({
+export const InputRadio = ({
   label,
-  value,
+  inputValue,
   name,
+  checked,
+  radioValue,
+  handleChange,
 }: {
   label: string
-  value: string
+  inputValue: string
   name: string
-  //	handleChange: ({[key: string]: string}) => void;
+  checked: boolean
+  radioValue: number
+  handleChange: (any) => void
 }) => {
   const handleTextFieldChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const value = event.currentTarget.value
-    //   handleChange({[event.currentTarget.name]: value})
+    handleChange({[event.currentTarget.name]: value})
+  }
+  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange({correct: Number(event.target.value)})
   }
   return (
-    <TextField
-      label={label}
-      variant="outlined"
-      value={value}
-      onChange={handleTextFieldChange}
-      name={name}
-    />
+    <Grid item xs={3}>
+      <FormControl required fullWidth>
+        <div style={{display: 'flex'}}>
+          <Radio
+            checked={checked}
+            onChange={handleRadioChange}
+            value={radioValue}
+          />
+          <TextField
+            label={label}
+            variant="outlined"
+            value={inputValue}
+            onChange={handleTextFieldChange}
+            name={name}
+          />
+        </div>
+      </FormControl>
+    </Grid>
   )
 }
 
@@ -41,18 +61,16 @@ export const DisabledInputRadio = ({
 }) => {
   return (
     <Grid item xs={3}>
-      <TextField
-        label={label}
-        variant="outlined"
-        value={value}
-        disabled
-        fullWidth
-      />
-      <Radio
-        checked={correct === value}
-        inputProps={{'aria-label': 'A'}}
-        disabled
-      />
+      <div style={{display: 'flex'}}>
+        <Radio checked={correct === value} disabled />
+        <TextField
+          label={label}
+          variant="outlined"
+          value={value}
+          disabled
+          fullWidth
+        />
+      </div>
     </Grid>
   )
 }

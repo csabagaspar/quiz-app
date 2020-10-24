@@ -12,17 +12,26 @@ export const NoMoreQuestions = () => {
   const {restart} = React.useContext<GameType>(GameContext)
 
   return (
-    <Grid container spacing={3} justify="center">
-      <Grid item xs={3} style={{textAlign: 'center'}}>
-        <Typography component="h1" variant="h4">
-          No more questions
-        </Typography>
+    <>
+      <Grid container spacing={3} justify="center">
+        <Grid item xs={5} style={{textAlign: 'center'}}>
+          <Typography component="h1" variant="h4">
+            No more questions
+          </Typography>
+        </Grid>
       </Grid>
-      <Grid item xs={3} style={{textAlign: 'center'}}>
-        <Button onClick={() => restart()} variant="contained" color="primary">
-          Restart
-        </Button>
+      <Grid container spacing={3} justify="center">
+        <Grid item xs={3} style={{textAlign: 'center'}}>
+          <Button
+            onClick={() => restart()}
+            variant="contained"
+            color="primary"
+            fullWidth
+          >
+            Restart
+          </Button>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   )
 }

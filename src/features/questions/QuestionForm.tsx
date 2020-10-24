@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography'
 import Radio from '@material-ui/core/Radio'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
-import {Input} from '../../components/Input'
+import {InputRadio} from '../../components/Input'
 
 import {addQuestion} from './questionsSlice'
 
@@ -53,6 +53,9 @@ export function QuestionForm() {
     const value = event.currentTarget.value
     setState({[event.currentTarget.name]: value})
   }
+  const handleChange = (value: any) => {
+    setState(value)
+  }
 
   return (
     <>
@@ -73,76 +76,38 @@ export function QuestionForm() {
               />
             </FormControl>
           </Grid>
-
-          <Grid item xs={3}>
-            <FormControl required fullWidth>
-              <TextField
-                label="Answer A"
-                variant="outlined"
-                value={A}
-                onChange={handleTextFieldChange}
-                name="A"
-              />
-              <Radio
-                checked={correct === 0}
-                onChange={handleRadioChange}
-                value={0}
-                inputProps={{'aria-label': 'A'}}
-              />
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={3}>
-            <FormControl required fullWidth>
-              <TextField
-                label="Answer B"
-                variant="outlined"
-                value={B}
-                onChange={handleTextFieldChange}
-                name="B"
-              />
-              <Radio
-                checked={correct === 1}
-                onChange={handleRadioChange}
-                value={1}
-                inputProps={{'aria-label': 'B'}}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}>
-            <FormControl required fullWidth>
-              <TextField
-                label="Answer C"
-                variant="outlined"
-                value={C}
-                onChange={handleTextFieldChange}
-                name="C"
-              />
-              <Radio
-                checked={correct === 2}
-                onChange={handleRadioChange}
-                value={2}
-                inputProps={{'aria-label': 'C'}}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}>
-            <FormControl required fullWidth>
-              <TextField
-                label="Answer D"
-                variant="outlined"
-                value={D}
-                onChange={handleTextFieldChange}
-                name="D"
-              />
-              <Radio
-                checked={correct === 3}
-                onChange={handleRadioChange}
-                value={3}
-                inputProps={{'aria-label': 'D'}}
-              />
-            </FormControl>
-          </Grid>
+          <InputRadio
+            label="Answer A"
+            inputValue={A}
+            name="A"
+            checked={correct === 0}
+            radioValue={0}
+            handleChange={handleChange}
+          />
+          <InputRadio
+            label="Answer B"
+            inputValue={B}
+            name="B"
+            checked={correct === 1}
+            radioValue={1}
+            handleChange={handleChange}
+          />
+          <InputRadio
+            label="Answer C"
+            inputValue={C}
+            name="C"
+            checked={correct === 2}
+            radioValue={2}
+            handleChange={handleChange}
+          />
+          <InputRadio
+            label="Answer D"
+            inputValue={D}
+            name="D"
+            checked={correct === 3}
+            radioValue={3}
+            handleChange={handleChange}
+          />
         </Grid>
         <Grid container spacing={3} justify="flex-end">
           <Grid item xs={3}>
@@ -151,6 +116,7 @@ export function QuestionForm() {
               variant="contained"
               color="primary"
               size="medium"
+              fullWidth
             >
               Add
             </Button>
