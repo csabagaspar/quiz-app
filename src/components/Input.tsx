@@ -1,4 +1,5 @@
 import React from 'react'
+import Input from '@material-ui/core/Input'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Radio from '@material-ui/core/Radio'
@@ -37,9 +38,8 @@ export const InputRadio = ({
             onChange={handleRadioChange}
             value={radioValue}
           />
-          <TextField
-            label={label}
-            variant="outlined"
+          <Input
+            placeholder={label}
             value={inputValue}
             onChange={handleTextFieldChange}
             name={name}

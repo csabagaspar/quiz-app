@@ -8,7 +8,6 @@ import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import ListItemText from '@material-ui/core/ListItemText'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -72,6 +71,7 @@ export function QuestionList() {
             <ListItemSecondaryAction
               data-id={question.id}
               onClick={handleDeleteQuestion}
+              style={{right: '0'}}
             >
               <IconButton aria-label="Delete">
                 <DeleteIcon />
