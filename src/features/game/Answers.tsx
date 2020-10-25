@@ -37,25 +37,12 @@ export const Answers = ({
   return (
     <>
       {answers.map((answer: string, index: number) => {
-        let backgroundColor
+        const backgroundColor: string = getBackgroundColor(
+          answer,
+          correct,
+          selectedAnswer,
+        )
 
-        if (
-          selectedAnswer &&
-          answer === correct &&
-          selectedAnswer === correct
-        ) {
-          backgroundColor = 'rgba(0, 128, 0, 0.7)'
-        } else if (
-          selectedAnswer &&
-          answer === correct &&
-          selectedAnswer !== correct
-        ) {
-          backgroundColor = 'rgba(255, 0, 0, 0.7)'
-        } else if (selectedAnswer === answer) {
-          backgroundColor = 'rgba(0, 0, 255, 0.7)'
-        } else {
-          backgroundColor = 'rgba(0, 0, 0, 0.12)'
-        }
         return (
           <Grid item xs={3} key={index} style={{textAlign: 'center'}}>
             {hasAnsweredCurrent ? (
@@ -82,4 +69,28 @@ export const Answers = ({
       })}
     </>
   )
+}
+enum AnswerColor {
+  MATCHED_GREEN = 'rgba(0, 128, 0, 0.7)',
+  NOT_MATCHED_RED = 'rgba(255, 0, 0, 0.7)',
+  SELECTED_BLUE = 'rgba(0, 0, 255, 0.7)',
+  NOT_SELECTED_GREY = 'rgba(0, 0, 0, 0.12)',
+}
+const getBackgroundColor = (
+  answer: string,
+  correct: string,
+  selected: string | undefined,
+): string => {
+  let backgroundColor
+
+  if (selected && answer === correct && selected === correct) {
+    backgroundColor = AnswerColor.MATCHED_GREEN
+  } else if (selected && answer === correct && selected !== correct) {
+    backgroundColor = AnswerColor.NOT_MATCHED_RED
+  } else if (selected === answer) {
+    backgroundColor = AnswerColor.SELECTED_BLUE
+  } else {
+    backgroundColor = AnswerColor.NOT_SELECTED_GREY
+  }
+  return backgroundColor as string
 }
