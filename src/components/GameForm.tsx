@@ -15,9 +15,12 @@ export const GameForm = ({questions}: {questions: Question[]}) => {
     incrementCurrentQuestionIndex,
   } = React.useContext<GameType>(GameContext)
 
-  const handleNextClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    incrementCurrentQuestionIndex()
-  }
+  const handleNextClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      incrementCurrentQuestionIndex()
+    },
+    [],
+  )
 
   return (
     <Grid container spacing={3} alignItems="center" justify="center">

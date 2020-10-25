@@ -14,34 +14,42 @@ import {GameForm} from '../components/GameForm'
 export const GamePage = () => {
   const questions = useSelector(queryQuestions)
   const numberOfQuestions = questions?.length
+
   const {currentQuestionIndex, username} = React.useContext<GameType>(
     GameContext,
+  )
+  const hasMoreQuesions = React.useMemo(
+    () => currentQuestionIndex >= numberOfQuestions,
+    [currentQuestionIndex, numberOfQuestions],
   )
 
   const getPagePart = (): React.FunctionComponentElement<any> => {
     if (numberOfQuestions === 0) {
       return React.createElement(NoQuestions, null, null)
-    } else if (currentQuestionIndex >= numberOfQuestions) {
+    } else if (hasMoreQuesions) {
       return React.createElement(NoMoreQuestions, null, null)
     } else {
       return React.createElement(GameForm, {questions}, null)
     }
   }
 
-  return (
-    <Container component="main" maxWidth="md">
-      <Typography component="h1" variant="h4">
-        Quiz game
-      </Typography>
+  return React.useMemo(
+    () => (
+      <Container component="main" maxWidth="md">
+        <Typography component="h1" variant="h4">
+          Quiz game
+        </Typography>
 
-      {!username ? (
-        <UsernameForm />
-      ) : (
-        <>
-          <GameInfo />
-          {getPagePart()}
-        </>
-      )}
-    </Container>
+        {!username ? (
+          <UsernameForm />
+        ) : (
+          <>
+            <GameInfo />
+            {getPagePart()}
+          </>
+        )}
+      </Container>
+    ),
+    [username, questions, hasMoreQuesions],
   )
 }

@@ -19,24 +19,38 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-export const GameInfo = () => {
+const Username = ({value}: {value: string | null}) => {
+  return (
+    <Typography variant="subtitle1" component="h2" align="center">
+      Username: {value}
+    </Typography>
+  )
+}
+const Score = ({value}: {value: number}) => {
+  return (
+    <Typography variant="subtitle2" component="h2" align="center">
+      Score: {value}
+    </Typography>
+  )
+}
+
+export const GameInfo = React.memo(() => {
   const classes = useStyles()
   const {username, score} = React.useContext<GameType>(GameContext)
 
-  return (
-    <Grid container spacing={3} justify="flex-end">
-      <Grid item xs={3}>
-        <div className={classes.root}>
-          <Paper variant="outlined">
-            <Typography variant="subtitle1" component="h2" align="center">
-              Username: {username}
-            </Typography>
-            <Typography variant="subtitle2" component="h2" align="center">
-              Score: {score}
-            </Typography>
-          </Paper>
-        </div>
+  return React.useMemo(
+    () => (
+      <Grid container spacing={3} justify="flex-end">
+        <Grid item xs={3}>
+          <div className={classes.root}>
+            <Paper variant="outlined">
+              <Username value={username} />
+              <Score value={score} />
+            </Paper>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
+    ),
+    [username, score],
   )
-}
+})

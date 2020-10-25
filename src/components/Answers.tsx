@@ -22,14 +22,18 @@ export const Answers = ({
     string | undefined
   >(() => '')
 
-  const handleAnswerClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const answer = event.currentTarget.dataset['answer']
-    setSelectedAnswer(() => answer)
-    if (answer === correct) {
-      incrementScore()
-    }
-    toggleAnsweredCurrent()
-  }
+  const handleAnswerClick = React.useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      const answer = event.currentTarget.dataset['answer']
+      setSelectedAnswer(() => answer)
+      if (answer === correct) {
+        incrementScore()
+      }
+      toggleAnsweredCurrent()
+    },
+    [correct],
+  )
+
   return (
     <>
       {answers.map((answer: string, index: number) => {

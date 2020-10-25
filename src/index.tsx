@@ -1,4 +1,5 @@
 import React from 'react'
+
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 
@@ -20,20 +21,20 @@ import theme from './theme'
 
 enum Page {
   ManageQuestions,
-  Game,
+  QuizGame,
 }
 
 function App() {
   const [page, setPage] = React.useState<Page>(() => Page.ManageQuestions)
   return (
-    <div>
+    <>
       <Typography component="h1" variant="h3" align="center">
         Quiz Application
       </Typography>
       <BottomNavigation
         value={page}
-        onChange={(event, newValue) => {
-          setPage(newValue)
+        onChange={(event: React.ChangeEvent<any>, newValue: number) => {
+          setPage(newValue as Page)
         }}
         showLabels
       >
@@ -50,7 +51,7 @@ function App() {
           <GamePage />
         </GameProvider>
       )}
-    </div>
+    </>
   )
 }
 

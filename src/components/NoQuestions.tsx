@@ -9,6 +9,8 @@ import {GameContext, GameType} from '../contexts/GameContext'
 export const NoMoreQuestions = () => {
   const {restart} = React.useContext<GameType>(GameContext)
 
+  const memoizedRestart = React.useCallback(() => restart(), [])
+
   return (
     <>
       <Grid container spacing={3} justify="center">
@@ -21,7 +23,7 @@ export const NoMoreQuestions = () => {
       <Grid container spacing={3} justify="center">
         <Grid item xs={3} style={{textAlign: 'center'}}>
           <Button
-            onClick={() => restart()}
+            onClick={memoizedRestart}
             variant="contained"
             color="primary"
             fullWidth

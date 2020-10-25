@@ -18,15 +18,16 @@ export function QuestionList() {
   const questions = useSelector(queryQuestions)
   const dispatch = useDispatch()
 
-  const handleDeleteQuestion = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
-    const id = event.currentTarget.dataset['id']
+  const handleDeleteQuestion = React.useCallback(
+    (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      const id = event.currentTarget.dataset['id']
 
-    if (id) {
-      dispatch(removeQuestion(id))
-    }
-  }
+      if (id) {
+        dispatch(removeQuestion(id))
+      }
+    },
+    [dispatch],
+  )
 
   return questions?.length > 0 ? (
     <>

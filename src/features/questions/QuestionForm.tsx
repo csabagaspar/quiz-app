@@ -3,9 +3,7 @@ import {useDispatch} from 'react-redux'
 import {v4 as uuidv4} from 'uuid'
 
 import Grid from '@material-ui/core/Grid'
-import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Radio from '@material-ui/core/Radio'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import {InputRadio} from '../../components/Input'
@@ -30,28 +28,31 @@ export function QuestionForm() {
     resetFormState(),
   )
 
-  const handleAdd = (event: React.FormEvent<EventTarget>) => {
-    event.preventDefault()
-    const answers = [A, B, C, D]
-    dispatch(
-      addQuestion({
-        id: uuidv4(),
-        question,
-        answers,
-        correct: answers[correct],
-      }),
-    )
-    setState(resetFormState())
-  }
+  const handleAdd = React.useCallback(
+    (event: React.FormEvent<EventTarget>) => {
+      event.preventDefault()
+      const answers = [A, B, C, D]
+      dispatch(
+        addQuestion({
+          id: uuidv4(),
+          question,
+          answers,
+          correct: answers[correct],
+        }),
+      )
+      setState(resetFormState())
+    },
+    [dispatch],
+  )
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value
     setState({[event.currentTarget.name]: value})
   }
 
-  const handleChange = (value: any) => {
+  const handleChange = React.useCallback((value: any) => {
     setState(value)
-  }
+  }, [])
 
   return (
     <>
