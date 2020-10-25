@@ -19,7 +19,7 @@ export const GameForm = ({questions}: {questions: Question[]}) => {
     (event: React.MouseEvent<HTMLButtonElement>) => {
       incrementCurrentQuestionIndex()
     },
-    [],
+    [incrementCurrentQuestionIndex],
   )
 
   return (

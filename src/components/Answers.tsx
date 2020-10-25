@@ -31,7 +31,7 @@ export const Answers = ({
       }
       toggleAnsweredCurrent()
     },
-    [correct],
+    [correct, incrementScore, toggleAnsweredCurrent],
   )
 
   return (

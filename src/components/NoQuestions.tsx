@@ -9,7 +9,7 @@ import {GameContext, GameType} from '../contexts/GameContext'
 export const NoMoreQuestions = () => {
   const {restart} = React.useContext<GameType>(GameContext)
 
-  const memoizedRestart = React.useCallback(() => restart(), [])
+  const memoizedRestart = React.useCallback(() => restart(), [restart])
 
   return (
     <>
