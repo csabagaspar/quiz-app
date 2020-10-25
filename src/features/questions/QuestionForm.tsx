@@ -42,15 +42,15 @@ export function QuestionForm() {
       )
       setState(resetFormState())
     },
-    [dispatch],
+    [dispatch, question, A, B, C, D, correct],
   )
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleQuestionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value
     setState({[event.currentTarget.name]: value})
   }
 
-  const handleChange = React.useCallback((value: any) => {
+  const handleAnswerChange = React.useCallback((value: any) => {
     setState(value)
   }, [])
 
@@ -68,7 +68,7 @@ export function QuestionForm() {
                 autoFocus
                 placeholder="Question"
                 value={question}
-                onChange={handleInputChange}
+                onChange={handleQuestionChange}
                 name="question"
               />
             </FormControl>
@@ -79,7 +79,7 @@ export function QuestionForm() {
             name="A"
             checked={correct === 0}
             radioValue={0}
-            handleChange={handleChange}
+            handleChange={handleAnswerChange}
           />
           <InputRadio
             label="Answer B"
@@ -87,7 +87,7 @@ export function QuestionForm() {
             name="B"
             checked={correct === 1}
             radioValue={1}
-            handleChange={handleChange}
+            handleChange={handleAnswerChange}
           />
           <InputRadio
             label="Answer C"
@@ -95,7 +95,7 @@ export function QuestionForm() {
             name="C"
             checked={correct === 2}
             radioValue={2}
-            handleChange={handleChange}
+            handleChange={handleAnswerChange}
           />
           <InputRadio
             label="Answer D"
@@ -103,7 +103,7 @@ export function QuestionForm() {
             name="D"
             checked={correct === 3}
             radioValue={3}
-            handleChange={handleChange}
+            handleChange={handleAnswerChange}
           />
         </Grid>
         <Grid container spacing={3} justify="flex-end">
