@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "278d4dd845543c25cef7a3ee6747a25a",
+    "revision": "70ae69dc64288d2430a7090c04700e19",
     "url": "/quiz-app/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/quiz-app/static/js/2.cd84d567.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c2d802739e26675b3fd0",
-    "url": "/quiz-app/static/js/main.e1340ee8.chunk.js"
+    "revision": "260e324b29b84b141721",
+    "url": "/quiz-app/static/js/main.62263ff6.chunk.js"
   },
   {
     "revision": "e15a1632907c25963bb7",
