@@ -23,6 +23,29 @@ enum Page {
   ManageQuestions,
   QuizGame,
 }
+const Navigation = ({
+  activePage,
+  updateActivePage,
+}: {
+  activePage: Page
+  updateActivePage: (page: Page) => void
+}) => {
+  return (
+    <BottomNavigation
+      value={activePage as number}
+      onChange={(event: React.ChangeEvent<any>, newValue: number) => {
+        updateActivePage(newValue as Page)
+      }}
+      showLabels
+    >
+      <BottomNavigationAction
+        label="Manage questions"
+        icon={<FormatAlignJustifyIcon />}
+      />
+      <BottomNavigationAction label="Quiz game" icon={<PlayArrowIcon />} />
+    </BottomNavigation>
+  )
+}
 
 function App() {
   const [page, setPage] = React.useState<Page>(() => Page.ManageQuestions)
@@ -31,19 +54,7 @@ function App() {
       <Typography component="h1" variant="h3" align="center">
         Quiz Application
       </Typography>
-      <BottomNavigation
-        value={page}
-        onChange={(event: React.ChangeEvent<any>, newValue: number) => {
-          setPage(newValue as Page)
-        }}
-        showLabels
-      >
-        <BottomNavigationAction
-          label="Manage questions"
-          icon={<FormatAlignJustifyIcon />}
-        />
-        <BottomNavigationAction label="Quiz game" icon={<PlayArrowIcon />} />
-      </BottomNavigation>
+      <Navigation activePage={page} updateActivePage={setPage} />
       {page === Page.ManageQuestions ? (
         <ManageQuestionsPage />
       ) : (
