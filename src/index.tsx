@@ -48,14 +48,14 @@ const Navigation = ({
 }
 
 function App() {
-  const [page, setPage] = React.useState<Page>(() => Page.ManageQuestions)
+  const [activePage, setActivePage] = React.useState<Page>(() => Page.ManageQuestions)
   return (
     <>
       <Typography component="h1" variant="h3" align="center">
         Quiz Application
       </Typography>
-      <Navigation activePage={page} updateActivePage={setPage} />
-      {page === Page.ManageQuestions ? (
+      <Navigation activePage={activePage} updateActivePage={setActivePage} />
+      {activePage === Page.ManageQuestions ? (
         <ManageQuestionsPage />
       ) : (
         <GameProvider>
