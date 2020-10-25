@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 
-import {GameContext, GameType} from '../contexts/GameContext'
+import {GameContext, GameType} from '../../contexts/GameContext'
 
 export const NoMoreQuestions = () => {
   const {restart} = React.useContext<GameType>(GameContext)

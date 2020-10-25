@@ -1,5 +1,3 @@
-import {Middleware} from 'redux'
-import {RootState} from './store'
 import {saveState} from './localStorage'
 import {
   addQuestion,

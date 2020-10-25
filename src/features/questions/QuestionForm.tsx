@@ -8,10 +8,11 @@ import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
 import {InputRadio} from '../../components/Input'
 import Input from '@material-ui/core/Input'
+import {ANSWER_LABELS, ANSWER_NAMES} from './constans'
 
 import {addQuestion} from './questionsSlice'
 
-const resetFormState = () => ({
+const getInitFormState = () => ({
   question: '',
   A: '',
   B: '',
@@ -25,7 +26,7 @@ export function QuestionForm() {
 
   const [{question, A, B, C, D, correct}, setState] = React.useReducer(
     (state, newState) => ({...state, ...newState}),
-    resetFormState(),
+    getInitFormState(),
   )
 
   const handleAdd = React.useCallback(
@@ -40,7 +41,7 @@ export function QuestionForm() {
           correct: answers[correct],
         }),
       )
-      setState(resetFormState())
+      setState(getInitFormState())
     },
     [dispatch, question, A, B, C, D, correct],
   )
@@ -73,38 +74,19 @@ export function QuestionForm() {
               />
             </FormControl>
           </Grid>
-          <InputRadio
-            label="Answer A"
-            inputValue={A}
-            name="A"
-            checked={correct === 0}
-            radioValue={0}
-            handleChange={handleAnswerChange}
-          />
-          <InputRadio
-            label="Answer B"
-            inputValue={B}
-            name="B"
-            checked={correct === 1}
-            radioValue={1}
-            handleChange={handleAnswerChange}
-          />
-          <InputRadio
-            label="Answer C"
-            inputValue={C}
-            name="C"
-            checked={correct === 2}
-            radioValue={2}
-            handleChange={handleAnswerChange}
-          />
-          <InputRadio
-            label="Answer D"
-            inputValue={D}
-            name="D"
-            checked={correct === 3}
-            radioValue={3}
-            handleChange={handleAnswerChange}
-          />
+          {[A, B, C, D].map((answer: string, index: number) => {
+            return (
+              <InputRadio
+                key={`answerform-${index}`}
+                label={ANSWER_LABELS[index]}
+                inputValue={answer}
+                name={ANSWER_NAMES[index]}
+                checked={correct === index}
+                radioValue={index}
+                handleChange={handleAnswerChange}
+              />
+            )
+          })}
         </Grid>
         <Grid container spacing={3} justify="flex-end">
           <Grid item xs={3}>

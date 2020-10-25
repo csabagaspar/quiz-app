@@ -11,8 +11,9 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 
-import {removeQuestion, queryQuestions} from './questionsSlice'
+import {removeQuestion, queryQuestions, Question} from './questionsSlice'
 import {DisabledInputRadio} from '../../components/Input'
+import {ANSWER_LABELS} from './constans'
 
 export function QuestionList() {
   const questions = useSelector(queryQuestions)
@@ -34,8 +35,8 @@ export function QuestionList() {
       <Typography component="h1" variant="h6">
         Questions
       </Typography>
-      <List dense={false}>
-        {questions.map((question) => (
+      <List>
+        {questions.map((question: Question) => (
           <ListItem key={question.id}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
@@ -47,26 +48,16 @@ export function QuestionList() {
                   fullWidth
                 />
               </Grid>
-              <DisabledInputRadio
-                label="Answer A"
-                value={question.answers[0]}
-                correct={question.correct}
-              />
-              <DisabledInputRadio
-                label="Answer B"
-                value={question.answers[1]}
-                correct={question.correct}
-              />
-              <DisabledInputRadio
-                label="Answer C"
-                value={question.answers[2]}
-                correct={question.correct}
-              />
-              <DisabledInputRadio
-                label="Answer D"
-                value={question.answers[3]}
-                correct={question.correct}
-              />
+              {question.answers.map((answer: string, index: number) => {
+                return (
+                  <DisabledInputRadio
+                    key={`answer-${index}`}
+                    label={ANSWER_LABELS[index]}
+                    value={answer}
+                    correct={question.correct}
+                  />
+                )
+              })}
             </Grid>
 
             <ListItemSecondaryAction

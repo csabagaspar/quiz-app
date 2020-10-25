@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import {makeStyles} from '@material-ui/core/styles'
 
-import {GameContext, GameType} from '../contexts/GameContext'
+import {GameContext, GameType} from '../../contexts/GameContext'
 
 const useStyles = makeStyles((theme) => ({
   paper: {

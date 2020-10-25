@@ -3,7 +3,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 
-import {GameContext, GameType} from '../contexts/GameContext'
+import {GameContext, GameType} from '../../contexts/GameContext'
 
 export const Answers = ({
   answers,

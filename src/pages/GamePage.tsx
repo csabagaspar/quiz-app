@@ -6,10 +6,10 @@ import Typography from '@material-ui/core/Typography'
 
 import {queryQuestions} from '../features/questions/questionsSlice'
 import {GameContext, GameType} from '../contexts/GameContext'
-import {UsernameForm} from '../components/UsernameForm'
-import {GameInfo} from '../components/GameInfo'
-import {NoMoreQuestions, NoQuestions} from '../components/NoQuestions'
-import {GameForm} from '../components/GameForm'
+import {UsernameForm} from '../features/game/UsernameForm'
+import {GameInfo} from '../features/game/GameInfo'
+import {NoMoreQuestions, NoQuestions} from '../features/game/NoQuestions'
+import {GameForm} from '../features/game/GameForm'
 
 export const GamePage = () => {
   const questions = useSelector(queryQuestions)
